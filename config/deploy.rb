@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -14,6 +14,9 @@ set :domain, '13.59.40.206'
 set :deploy_to, '/home/ubuntu/blog'
 set :repository, 'git@github.com:amoludage/Blog.git'
 set :branch, 'master'
+set :user, 'ubuntu'
+set :identity_file, '/home/admin/.ssh/FirstInstance.pem'
+set :rails_env, 'production'
 
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
@@ -35,7 +38,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+  invoke :'rvm:use[ruby-2.4.0@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
